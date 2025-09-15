@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Bairytale</title>
+    <meta name="description" content="Portfolio - Texte, die wirken. Ausgewählte Arbeiten und Projekte.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Bairytale Dark Minimal Design System */
+
+/* CSS Variables */
+:root {
+  /* Dark Theme Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --bg-accent: #222222;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #666666;
+  
+  --accent-primary: #00ff88;
+  --accent-secondary: #0066ff;
+  --accent-tertiary: #ff6b6b;
+  
+  --border-color: #333333;
+  --border-accent: #444444;
+  
+  /* Typography */
+  --font-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Borders & Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.lead-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.accent-text {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+/* Floating Navigation */
+.floating-nav {
+  position: fixed;
+  top: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  z-index: 1000;
+  transition: var(--transition-normal);
+}
+
+.floating-nav.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  border-color: var(--border-accent);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.brand-symbol {
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--accent-primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+}
+
+.mobile-toggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+/* Portfolio Header */
+.portfolio-header {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  padding: calc(var(--space-4xl) + 80px) var(--space-md) var(--space-4xl);
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.portfolio-title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.portfolio-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+  padding: var(--space-4xl) var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-intro {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.intro-text {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.intro-text strong {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Portfolio Index */
+.portfolio-index {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: var(--transition-normal);
+}
+
+.portfolio-index:hover {
+  border-color: var(--accent-primary);
+}
+
+.index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.index-title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.index-count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+/* Filter Section */
+.filter-section {
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+/* Project List */
+.project-list {
+  list-style: none;
+}
+
+.project-entry {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px 60px;
+  gap: var(--space-lg);
+  align-items: center;
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.project-entry.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-entry:hover {
+  background: var(--bg-tertiary);
+  margin: 0 calc(-1 * var(--space-lg));
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border-bottom: 1px solid transparent;
+}
+
+.project-entry.active {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  margin: 0 calc(-1 * var(--space-lg));
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border-bottom: 1px solid transparent;
+}
+
+.project-entry.active .project-code,
+.project-entry.active .project-title,
+.project-entry.active .project-category,
+.project-entry.active .project-arrow {
+  color: var(--bg-primary);
+}
+
+.project-code {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.project-title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  line-height: 1.3;
+  transition: var(--transition-fast);
+}
+
+.project-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  background: var(--bg-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.project-arrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.project-entry:hover .project-arrow {
+  color: var(--accent-primary);
+  transform: translateX(4px);
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: var(--space-lg) 0;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: var(--space-4xl) 0 var(--space-lg);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--accent-primary);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: var(--transition-fast);
+}
+
+.footer-social a:hover {
+  color: var(--accent-primary);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-bottom p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: var(--transition-fast);
+}
+
+.footer-legal a:hover {
+  color: var(--accent-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .floating-nav {
+    left: var(--space-md);
+    right: var(--space-md);
+    transform: none;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-sm);
+    padding: var(--space-md);
+    flex-direction: column;
+    gap: var(--space-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-normal);
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .mobile-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+
+  .mobile-toggle.active span:nth-child(2) {
+    transform: rotate(-45deg) translate(3px, -3px);
+  }
+
+  .portfolio-header {
+    padding: calc(var(--space-3xl) + 80px) var(--space-md) var(--space-3xl);
+  }
+
+  .portfolio-section {
+    padding: var(--space-3xl) var(--space-md);
+  }
+
+  .portfolio-index {
+    padding: var(--space-lg);
+  }
+
+  .project-entry {
+    grid-template-columns: 80px 1fr 40px;
+    gap: var(--space-md);
+  }
+
+  .project-category {
+    display: none;
+  }
+
+  .index-header {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  .index-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-buttons {
+    gap: var(--space-sm);
+  }
+
+  .filter-btn {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-nav {
+    padding: var(--space-sm);
+  }
+
+  .section-container {
+    padding: var(--space-3xl) var(--space-sm);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles */
+.filter-btn:focus,
+.nav-link:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-entry {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.project-entry:nth-child(1) { animation-delay: 0.1s; }
+.project-entry:nth-child(2) { animation-delay: 0.2s; }
+.project-entry:nth-child(3) { animation-delay: 0.3s; }
+.project-entry:nth-child(4) { animation-delay: 0.4s; }
+.project-entry:nth-child(5) { animation-delay: 0.5s; }
+.project-entry:nth-child(6) { animation-delay: 0.6s; }
+.project-entry:nth-child(7) { animation-delay: 0.7s; }
+.project-entry:nth-child(8) { animation-delay: 0.8s; }
+.project-entry:nth-child(9) { animation-delay: 0.9s; }
+</style>
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-symbol">◆</span>
+            Bairytale
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="ueber-mich.html" class="nav-link">Über mich</a>
+            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+            <a href="portfolio.html" class="nav-link active">Portfolio</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <button class="mobile-toggle">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Portfolio Header -->
+    <section class="portfolio-header">
+        <h1 class="portfolio-title">Portfolio</h1>
+        <p class="portfolio-subtitle">// Alle Projekte auf einen Blick</p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="portfolio-intro">
+            <div class="intro-text">
+                <strong>Das Archiv.</strong> Hier ist alles katalogisiert, indexiert und bereit zum Durchstöbern. Jeder Code führt zu einem Projekt, jeder Klick zu einer Geschichte. Willkommen in meiner Textbibliothek.
+            </div>
+        </div>
+
+        <div class="portfolio-index">
+            <div class="index-header">
+                <h2 class="index-title">Projekt-Index</h2>
+                <div class="index-count">09 // ENTRIES</div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Alle</button>
+                    <button class="filter-btn" data-filter="copywriting">Copywriting</button>
+                    <button class="filter-btn" data-filter="storytelling">Storytelling</button>
+                    <button class="filter-btn" data-filter="ghostwriting">Ghostwriting</button>
+                </div>
+            </div>
+
+            <ul class="project-list">
+                <li class="project-entry active animate-in" data-category="copywriting">
+                    <div class="project-code">CW-001</div>
+                    <div class="project-title">Startup Landing Page Revolution</div>
+                    <div class="project-category">Copywriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="storytelling">
+                    <div class="project-code">ST-002</div>
+                    <div class="project-title">Brand Story Kampagne für Tech-Startup</div>
+                    <div class="project-category">Storytelling</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <div class="section-divider"></div>
+
+                <li class="project-entry animate-in" data-category="ghostwriting">
+                    <div class="project-code">GW-003</div>
+                    <div class="project-title">CEO Biografie: Vom Tellerwäscher zum Millionär</div>
+                    <div class="project-category">Ghostwriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="copywriting">
+                    <div class="project-code">CW-004</div>
+                    <div class="project-title">E-Commerce Produkttexte mit Persönlichkeit</div>
+                    <div class="project-category">Copywriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="storytelling">
+                    <div class="project-code">ST-005</div>
+                    <div class="project-title">Social Media Kampagne: #AuthenticStories</div>
+                    <div class="project-category">Storytelling</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <div class="section-divider"></div>
+
+                <li class="project-entry animate-in" data-category="copywriting">
+                    <div class="project-code">CW-006</div>
+                    <div class="project-title">Newsletter Serie: Wöchentliche Weisheiten</div>
+                    <div class="project-category">Copywriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="ghostwriting">
+                    <div class="project-code">GW-007</div>
+                    <div class="project-title">Unternehmens-Manifest: Vision wird Realität</div>
+                    <div class="project-category">Ghostwriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="storytelling">
+                    <div class="project-code">ST-008</div>
+                    <div class="project-title">Podcast Konzept: Geschichten die bewegen</div>
+                    <div class="project-category">Storytelling</div>
+                    <div class="project-arrow">→</div>
+                </li>
+
+                <li class="project-entry animate-in" data-category="copywriting">
+                    <div class="project-code">CW-009</div>
+                    <div class="project-title">Sales Funnel Texte: Vom Interesse zum Kauf</div>
+                    <div class="project-category">Copywriting</div>
+                    <div class="project-arrow">→</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-symbol">◆</span>
+                    Bairytale
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="ueber-mich.html">Über mich</a>
+                    <a href="dienstleistungen.html">Dienstleistungen</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bairytale. Alle Rechte vorbehalten.</p>
+                <div class="footer-legal">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Floating nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.floating-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const entries = document.querySelectorAll('.project-entry');
+                
+                entries.forEach(entry => {
+                    if (filter === 'all' || entry.dataset.category === filter) {
+                        entry.style.display = 'grid';
+                    } else {
+                        entry.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project entry click functionality
+        document.querySelectorAll('.project-entry').forEach(entry => {
+            entry.addEventListener('click', function() {
+                // Remove active class from all entries
+                document.querySelectorAll('.project-entry').forEach(e => e.classList.remove('active'));
+                // Add active class to clicked entry
+                this.classList.add('active');
+                
+                // Here you would navigate to the individual project page
+                console.log('Navigate to project:', this.querySelector('.project-title').textContent);
+            });
+        });
+
+        // Animate entries on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-entry').forEach(entry => {
+            observer.observe(entry);
+        });
+    </script>
+</body>
+</html>
+
